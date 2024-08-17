@@ -1,0 +1,93 @@
+#!/bin/bash
+
+# > ------
+# ### ABOUT
+
+# Starts the "sensors" utility in an instance of Konsole (terminal emulator) with
+# its window positioned in the top right corner of the (main) screen with the defined
+# dimensions and keeping the window above others.
+
+# IMPORTANT:
+# - You need to disable "Remember window size" in the Konsole (terminal
+# emulator). Following on Konsole "Settings" -> "Configure Konsole...".
+# - Install "wmctrl" and xdotool utilities.
+
+# QUESTOR_THE_ELF ( https://www.linkedin.com/in/eduardo-software-livre/ )
+# [<o>] BRAZIL DF
+
+# ### LICENSE
+
+# BSD 3-Clause License
+
+# Copyright (c) 2024, Eduardo Lúcio Amorim Costa
+# All rights reserved.
+
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+
+# 1. Redistributions of source code must retain the above copyright notice, this
+   # list of conditions and the following disclaimer.
+
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+   # this list of conditions and the following disclaimer in the documentation
+   # and/or other materials provided with the distribution.
+
+# 3. Neither the name of the copyright holder nor the names of its
+   # contributors may be used to endorse or promote products derived from
+   # this software without specific prior written permission.
+
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# < ------
+
+# Set the desired dimensions for the window.
+WINDOW_WIDTH=250
+WINDOW_HEIGHT=250
+
+# Get the screen resolution of the primary monitor.
+SCREEN_WIDTH=$(xdpyinfo | awk '/dimensions:/ {print $2}' | cut -d 'x' -f 1)
+SCREEN_HEIGHT=$(xdpyinfo | awk '/dimensions:/ {print $2}' | cut -d 'x' -f 2)
+
+# Calculate the top right corner position.
+X_TOP_RIGHT_POSITION=$((SCREEN_WIDTH - WINDOW_WIDTH))
+Y_TOP_RIGHT_POSITION=28
+
+# Run the inside the terminal emulator.
+konsole -p tabtitle="MY SENSORS SHORTCUT" -e "watch -n 1 sensors" &
+
+# Give the window time to start to minimize unnecessary loops below.
+sleep 0.6
+
+# Using 20 repetitions to avoid infinite loop.
+for i in {1..20}; do
+
+    # Locate the window by the name set for it.
+    WINDOW_ID=$(xdotool search --name "MY SENSORS SHORTCUT")
+
+    if [ -n "$WINDOW_ID" ]; then
+    # The window was found.
+
+        # Move the window to the top right corner.
+        wmctrl -i -r $WINDOW_ID \
+            -e 0,$X_TOP_RIGHT_POSITION,$Y_TOP_RIGHT_POSITION,$WINDOW_WIDTH,$WINDOW_HEIGHT
+
+        # Keep the window above others.
+        wmctrl -i -r $WINDOW_ID -b add,above
+
+        # All done! Stop the loop.
+        break
+    fi
+
+    # Allow time for the next execution so that processing does not go through the
+    # roof.
+    sleep 0.05
+
+done
