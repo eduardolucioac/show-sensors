@@ -29,7 +29,9 @@ This is free software and you are equally free to specify any amount of money yo
 
 ### Install required utilities
 
-Install the "wmctrl" and "xdotool" utilities.
+Install the "lm_sensors", "wmctrl" and "xdotool" utilities.
+
+**NOTE:** After installing "lm_sensors" on your system, run the command `sudo sensors-detect` to determine which kernel modules you need to load to use "lm_sensors" most effectively. It is generally safe and recommended to accept the default answers to all questions, unless you know what you're doing.
 
 ### Disable "Remember window size"
 
