@@ -76,7 +76,7 @@ konsole -p tabtitle="MY SUDO HTOP SHORTCUT" -e bash -c "sudo htop" &
 
 # About
 
-show_sensors 🄯 BSD-3-Clause  
+Show Sensors 🄯 BSD-3-Clause  
 Eduardo Lúcio Amorim Costa  
 Brazil-DF  
 https://www.linkedin.com/in/eduardo-software-livre/
