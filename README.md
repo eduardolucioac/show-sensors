@@ -57,7 +57,7 @@ Add the keyboard shortcut ("Add custom shortcut") (eg: "Alt+Shift+S").
 
 ## Final considerations
 
-In reality, this script can be adapted to any other CLI application and any other * terminal emulator.
+In reality, this script can be adapted to any other CLI application and any other terminal emulator.
 
 In this example, we use the "htop" application, which is started with "root" credentials...
 
@@ -65,7 +65,7 @@ In this example, we use the "htop" application, which is started with "root" cre
 konsole -p tabtitle="MY SUDO HTOP SHORTCUT" -e bash -c "sudo htop" &
 ```
 
- * The strategy that uses the value in `tabtitle="MY SUDO HTOP SHORTCUT"` is so that "wmctrl" applies the adjustments to the console window as soon as possible and in a guaranteed way, but `xdotool` can use other search strategies. More details in the code itself.
+**NOTE:** The strategy that uses the value in `tabtitle="MY SUDO HTOP SHORTCUT"` (Konsole) is so that "wmctrl" applies the adjustments to the console window as soon as possible and in a guaranteed way, but `xdotool` can use other search strategies. More details in the code itself.
 
 ## Future
 
