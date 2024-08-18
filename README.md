@@ -47,7 +47,7 @@ chmod +x show_sensors
 
 **TIP:** To test `./show_sensors`.
 
-### Create a shortcut (KDE, Suggestion)
+### Create a shortcut (KDE, a suggestion)
 
 Follow "System Settings" > "Keyboard" > Shortcuts > "Add New" > "Command or Script...".
 
