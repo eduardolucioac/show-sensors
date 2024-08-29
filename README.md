@@ -4,6 +4,8 @@
 
 Starts the "sensors" utility in an instance of Konsole (terminal emulator) with its window positioned in the top right corner of the (main) screen with the defined dimensions and keeping the window above others.
 
+**IMPORTANT:** My life, my work and my passion is free software. Corrections, tweaks and improvements are very welcome (**pull requests** 😉)! Please consider giving us a ⭐, fork, support this project or even visit our professional profile (see [About](#about)). **Thanks!** 🥰
+
 # Donations
 
 Please consider to deposit a donation through PayPal by clicking on the next button...
