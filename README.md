@@ -74,8 +74,6 @@ konsole -p tabtitle="MY SUDO HTOP SHORTCUT" -e bash -c "sudo htop" &
 - Parameterize the script so that it can be easily used with other commands.
 - Allowing the window to be positioned in nine possible predefined positions: top left diagonal, top centered, top right diagonal, centered left, centered, centered right, bottom left diagonal, bottom centered and bottom right diagonal.
 
----------------------------------------------------------------------
-
 # About
 
 Show Sensors 🄯 BSD-3-Clause  
@@ -84,5 +82,3 @@ Brazil-DF
 https://www.linkedin.com/in/eduardo-software-livre/
 
 ![Brazil](./images/brazil.png)
-
----------------------------------------------------------------------
